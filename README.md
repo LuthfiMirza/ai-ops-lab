@@ -71,7 +71,7 @@ ai-ops-lab/
 | **2** | **Kubernetes on kind:** Declarative manifests, resource limits, health probes, ingress routing | ✅ Completed | Running pods, verified ingress |
 | **3** | **Continuous Integration:** GitHub Actions pipeline for linting, testing, and container build | ✅ Completed | Green CI pipeline |
 | **4** | **Observability:** Prometheus metrics scraping, Grafana RED dashboard, alerting rules | ✅ Completed | Live Grafana dashboard |
-| **5** | **Database & DR:** MySQL StatefulSet, schema indexing, backup/restore scripts, RTO/RPO tracking | ⏳ Pending | Tested backup & restore |
+| **5** | **Database & DR:** MySQL StatefulSet, schema indexing, backup/restore scripts, RTO/RPO tracking | ✅ Completed | Tested backup & restore |
 | **6** | **Game Days:** Simulated production incidents, runbooks, and blameless postmortems | ⏳ Pending | 3+ incident postmortems |
 | **7** | **Bonus Extensions:** Streaming ingestion, drift detection, or infrastructure automation | ⏳ Backlog | Selected operational bonus |
 

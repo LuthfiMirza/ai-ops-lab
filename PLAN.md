@@ -20,7 +20,7 @@ Membangun layanan analisis sentimen berita saham yang:
 - [x] Deploy ke kind (Deployment, Service, ConfigMap, Secret, Ingress)
 - [x] GitHub Actions: lint, test, build image
 - [x] Prometheus + Grafana menampilkan request rate, latency, error rate
-- [ ] MySQL menyimpan hasil prediksi; backup dan restore teruji (RTO/RPO dicatat)
+- [x] MySQL menyimpan hasil prediksi; backup dan restore teruji (RTO/RPO dicatat)
 - [ ] Minimal 3 game day dengan runbook dan postmortem
 - [ ] README + diagram arsitektur
 
@@ -61,7 +61,7 @@ ai-ops-lab/
 | 2 | kind + manifest Kubernetes | Selesai | `kubectl get pods` sehat, akses via Ingress |
 | 3 | CI GitHub Actions | Selesai | pipeline hijau |
 | 4 | Monitoring Prometheus + Grafana + alert | Selesai | dashboard hidup |
-| 5 | MySQL + persistensi + backup/restore | Belum | data tetap ada setelah pod dihapus |
+| 5 | MySQL + persistensi + backup/restore | Selesai | data tetap ada setelah pod dihapus |
 | 6 | Game day + runbook + postmortem | Belum | 3 dokumen insiden |
 | 7 (bonus) | Kafka, GraphQL, Ansible, drift metric | Belum | pilih sesuai waktu |
 
