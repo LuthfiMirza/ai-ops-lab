@@ -16,7 +16,7 @@ Membangun layanan analisis sentimen berita saham yang:
 
 ## Definition of Done (versi minimal)
 
-- [ ] API `/predict`, `/health`, `/metrics` jalan di Docker
+- [x] API `/predict`, `/health`, `/metrics` jalan di Docker
 - [ ] Deploy ke kind (Deployment, Service, ConfigMap, Secret, Ingress)
 - [ ] GitHub Actions: lint, test, build image
 - [ ] Prometheus + Grafana menampilkan request rate, latency, error rate
@@ -57,7 +57,7 @@ ai-ops-lab/
 | Fase | Isi | Status | Output yang bisa didemokan |
 |---|---|---|---|
 | 0 | Discovery: cek spek mesin, kondisi model skripsi, tool terpasang | Selesai | `docs/00-discovery.md` |
-| 1 | API + model + Docker | Belum | `docker run` lalu `curl /predict` |
+| 1 | API + model + Docker | Selesai | `docker run` lalu `curl /predict` |
 | 2 | kind + manifest Kubernetes | Belum | `kubectl get pods` sehat, akses via Ingress |
 | 3 | CI GitHub Actions | Belum | pipeline hijau |
 | 4 | Monitoring Prometheus + Grafana + alert | Belum | dashboard hidup |

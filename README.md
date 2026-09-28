@@ -65,7 +65,7 @@ ai-ops-lab/
 | Phase | Description | Status | Deliverables |
 |---|---|:---:|---|
 | **0** | **Discovery:** Environment discovery, hardware specs, tooling audit, and project scaffolding | ✅ Completed | `docs/00-discovery.md` |
-| **1** | **API & Containerization:** FastAPI endpoints (`/predict`, `/health`, `/metrics`), model loading, multi-stage Docker build | ⏳ Pending | Docker image, `curl /predict` |
+| **1** | **API & Containerization:** FastAPI endpoints (`/predict`, `/health`, `/metrics`), model loading, multi-stage Docker build | ✅ Completed | Docker image, `curl /predict` |
 | **2** | **Kubernetes on kind:** Declarative manifests, resource limits, health probes, ingress routing | ⏳ Pending | Running pods, verified ingress |
 | **3** | **Continuous Integration:** GitHub Actions pipeline for linting, testing, and container build | ⏳ Pending | Green CI pipeline |
 | **4** | **Observability:** Prometheus metrics scraping, Grafana RED dashboard, alerting rules | ⏳ Pending | Live Grafana dashboard |
