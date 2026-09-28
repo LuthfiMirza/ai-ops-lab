@@ -1,0 +1,79 @@
+# Operating System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing and Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Environment and Secrets (CRITICAL: Never commit real secrets)
+.env
+.env.*
+!.env.example
+k8s/secret.yaml
+k8s/*-secret.yaml
+!k8s/secret.example.yaml
+
+# IDE & Editor configurations
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Kubernetes & Cluster Credentials
+kubeconfig
+*.kubeconfig
+.kube/
+
+# Large Model Artifacts (allow tiny demo baselines if needed, but exclude large dumps)
+model/artifacts/*.bin
+model/artifacts/*.tar.gz
+model/artifacts/*.zip
+model/artifacts/*.pt
+model/artifacts/*.pth
+model/artifacts/*.onnx
+model/artifacts/*.h5
+!model/artifacts/.gitkeep
+
