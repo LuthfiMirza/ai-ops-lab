@@ -75,6 +75,9 @@ jobs:
             sleep 1
           done
 
+          # Verify container is alive
+          docker ps | grep smoke-test-api || (echo "Container died! Logs:" && docker logs smoke-test-api && exit 1)
+
           # Test health probe
           curl -f http://localhost:8000/health
 
