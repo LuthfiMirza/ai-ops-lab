@@ -1,11 +1,13 @@
+import os
 import time
-from fastapi import FastAPI, HTTPException, Request, Response, status
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
 
 from prometheus_client import CONTENT_TYPE_LATEST
 
 from app.schemas import SentimentRequest, SentimentResponse, HealthResponse
 from app.model_loader import get_model_loader
+from app.db import save_prediction_log, check_db_health
 from app.metrics import (
     HTTP_REQUESTS_TOTAL,
     HTTP_REQUEST_DURATION_SECONDS,
@@ -62,15 +64,18 @@ def root():
 def health():
     """
     Health check endpoint used by Kubernetes liveness and readiness probes.
-    Verifies that the inference model is loaded in memory.
+    Verifies that the inference model is loaded in memory and reports DB status if configured.
     """
     try:
         loader = get_model_loader()
         is_loaded = loader.model is not None
+        db_configured = bool(os.environ.get("DB_HOST"))
+        db_ok = check_db_health() if db_configured else None
         return HealthResponse(
             status="ok" if is_loaded else "degraded",
             model_loaded=is_loaded,
-            model_type="baseline-sklearn"
+            model_type="baseline-sklearn",
+            database_connected=db_ok,
         )
     except Exception as exc:
         return JSONResponse(
@@ -102,7 +107,7 @@ def metrics():
     include_in_schema=False,
     summary="Alias matching thesis sentiment_api.py endpoint"
 )
-def predict(payload: SentimentRequest):
+def predict(payload: SentimentRequest, background_tasks: BackgroundTasks):
     """
     Perform sentiment inference on input headline text.
     Contract matches the thesis application schema (label, confidence, score, probabilities).
@@ -126,9 +131,20 @@ def predict(payload: SentimentRequest):
             detail=f"Inference execution failed: {str(exc)}"
         )
     finally:
-        MODEL_INFERENCE_DURATION_SECONDS.observe(time.time() - infer_start)
+        infer_duration_s = time.time() - infer_start
+        MODEL_INFERENCE_DURATION_SECONDS.observe(infer_duration_s)
 
     # Track prediction distribution by winning label
     PREDICTIONS_TOTAL.labels(sentiment=prediction["label"]).inc()
+
+    # Persist prediction log to MySQL asynchronously in background
+    background_tasks.add_task(
+        save_prediction_log,
+        input_text=input_text,
+        sentiment=prediction["label"],
+        confidence=prediction["confidence"],
+        score=prediction["score"],
+        latency_ms=round(infer_duration_s * 1000.0, 2),
+    )
 
     return SentimentResponse(**prediction)

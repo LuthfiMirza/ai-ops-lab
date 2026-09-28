@@ -44,3 +44,4 @@ class HealthResponse(BaseModel):
     status: str = Field(default="ok")
     model_loaded: bool = Field(default=True)
     model_type: str = Field(default="baseline-sklearn")
+    database_connected: Optional[bool] = Field(default=None)

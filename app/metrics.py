@@ -26,6 +26,17 @@ MODEL_INFERENCE_DURATION_SECONDS = Histogram(
     buckets=[0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5]
 )
 
+DB_ERRORS_TOTAL = Counter(
+    "db_errors_total",
+    "Total count of database insert or connection failures.",
+    ["operation"]
+)
+
+PREDICTIONS_PERSISTED_TOTAL = Counter(
+    "predictions_persisted_total",
+    "Total count of sentiment prediction records successfully committed to MySQL."
+)
+
 
 def get_latest_metrics() -> bytes:
     """Serialize current Prometheus registry into Prometheus exposition format."""

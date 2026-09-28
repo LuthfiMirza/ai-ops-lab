@@ -32,6 +32,23 @@ spec:
             name: sentiment-api-config
         - secretRef:
             name: sentiment-api-secret
+        env:
+        - name: DB_HOST
+          value: "mysql-service.ai-ops.svc.cluster.local"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_NAME
+          value: "ai_ops_db"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_PASSWORD
         resources:
           requests:
             cpu: 100m
