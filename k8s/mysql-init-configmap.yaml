@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-init-config
+  namespace: ai-ops
+  labels:
+    app: mysql
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS ai_ops_db;
+    USE ai_ops_db;
+
+    CREATE TABLE IF NOT EXISTS sentiment_predictions (
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+        input_text TEXT NOT NULL,
+        sentiment VARCHAR(32) NOT NULL,
+        confidence DECIMAL(5, 4) NOT NULL,
+        score DECIMAL(5, 4) NOT NULL,
+        latency_ms DECIMAL(8, 2) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_created_at (created_at),
+        INDEX idx_sentiment (sentiment)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
