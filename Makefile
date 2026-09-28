@@ -84,3 +84,18 @@ monitoring-port-forward:
 traffic:
 	bash scripts/generate-traffic.sh 30
 
+mysql-deploy:
+	kubectl apply -f k8s/mysql-secret.yaml
+	kubectl apply -f k8s/mysql-init-configmap.yaml
+	kubectl apply -f k8s/mysql-service.yaml
+	kubectl apply -f k8s/mysql-statefulset.yaml
+
+backup:
+	bash scripts/backup.sh
+
+restore:
+	bash scripts/restore.sh $(or $(FILE),latest)
+
+db-status:
+	@kubectl exec mysql-0 -n ai-ops -- mysql -u aiops_user -paiops_password ai_ops_db -e "SELECT COUNT(*) as total_records FROM sentiment_predictions; SELECT sentiment, COUNT(*) as count FROM sentiment_predictions GROUP BY sentiment;"
+

@@ -77,3 +77,9 @@ model/artifacts/*.onnx
 model/artifacts/*.h5
 !model/artifacts/.gitkeep
 
+# Database Backups & Dumps
+backups/*.sql
+backups/*.sql.gz
+!backups/.gitkeep
+
+
