@@ -2,6 +2,8 @@ import time
 from fastapi import FastAPI, HTTPException, Request, Response, status
 from fastapi.responses import JSONResponse
 
+from prometheus_client import CONTENT_TYPE_LATEST
+
 from app.schemas import SentimentRequest, SentimentResponse, HealthResponse
 from app.model_loader import get_model_loader
 from app.metrics import (
@@ -10,7 +12,6 @@ from app.metrics import (
     PREDICTIONS_TOTAL,
     MODEL_INFERENCE_DURATION_SECONDS,
     get_latest_metrics,
-    CONTENT_TYPE_LATEST,
 )
 
 app = FastAPI(

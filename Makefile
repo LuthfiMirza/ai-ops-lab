@@ -5,12 +5,14 @@ IMAGE_TAG ?= v1.0.0
 PORT ?= 8000
 VENV_PYTHON = .venv/bin/python
 VENV_PYTEST = .venv/bin/pytest
+VENV_FLAKE8 = .venv/bin/flake8
 
 help:
 	@echo "AI Ops Lab: Developer Automation Commands"
 	@echo "-----------------------------------------"
 	@echo "make train        : Train baseline sentiment model on demo dataset"
 	@echo "make test         : Run automated test suite with pytest"
+	@echo "make lint         : Run flake8 static code analysis and linting"
 	@echo "make run          : Run API locally with uvicorn (.venv)"
 	@echo "make docker-build : Build multi-stage non-root container image"
 	@echo "make docker-run   : Run containerized API on port $(PORT)"
@@ -19,6 +21,10 @@ help:
 
 train:
 	$(VENV_PYTHON) model/train.py
+
+lint:
+	$(VENV_FLAKE8) . --count --select=E9,F63,F7,F82 --show-source --statistics
+	$(VENV_FLAKE8) app tests model --max-line-length=120 --statistics
 
 test:
 	$(VENV_PYTEST) tests/ -v

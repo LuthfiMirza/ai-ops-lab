@@ -7,7 +7,6 @@ the operational microservice serving pipeline, Kubernetes deployment, and RED
 metrics monitoring.
 """
 
-import os
 from pathlib import Path
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
