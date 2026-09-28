@@ -39,3 +39,21 @@ docker-stop:
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +
+
+cluster-up:
+	bash scripts/kind-up.sh
+
+cluster-down:
+	bash scripts/kind-down.sh
+
+k8s-deploy:
+	kubectl apply -f k8s/namespace.yaml
+	kubectl apply -f k8s/configmap.yaml
+	kubectl apply -f k8s/secret.example.yaml
+	kubectl apply -f k8s/service.yaml
+	kubectl apply -f k8s/deployment.yaml
+	kubectl apply -f k8s/ingress.yaml
+
+k8s-status:
+	kubectl get all,ingress -n ai-ops
+
