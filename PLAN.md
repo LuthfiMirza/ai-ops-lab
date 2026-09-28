@@ -18,7 +18,7 @@ Membangun layanan analisis sentimen berita saham yang:
 
 - [x] API `/predict`, `/health`, `/metrics` jalan di Docker
 - [x] Deploy ke kind (Deployment, Service, ConfigMap, Secret, Ingress)
-- [ ] GitHub Actions: lint, test, build image
+- [x] GitHub Actions: lint, test, build image
 - [ ] Prometheus + Grafana menampilkan request rate, latency, error rate
 - [ ] MySQL menyimpan hasil prediksi; backup dan restore teruji (RTO/RPO dicatat)
 - [ ] Minimal 3 game day dengan runbook dan postmortem
@@ -59,7 +59,7 @@ ai-ops-lab/
 | 0 | Discovery: cek spek mesin, kondisi model skripsi, tool terpasang | Selesai | `docs/00-discovery.md` |
 | 1 | API + model + Docker | Selesai | `docker run` lalu `curl /predict` |
 | 2 | kind + manifest Kubernetes | Selesai | `kubectl get pods` sehat, akses via Ingress |
-| 3 | CI GitHub Actions | Belum | pipeline hijau |
+| 3 | CI GitHub Actions | Selesai | pipeline hijau |
 | 4 | Monitoring Prometheus + Grafana + alert | Belum | dashboard hidup |
 | 5 | MySQL + persistensi + backup/restore | Belum | data tetap ada setelah pod dihapus |
 | 6 | Game day + runbook + postmortem | Belum | 3 dokumen insiden |

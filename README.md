@@ -1,5 +1,7 @@
 # AI Ops Lab
 
+[![Continuous Integration](https://github.com/LuthfiMirza/ai-ops-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/LuthfiMirza/ai-ops-lab/actions/workflows/ci.yml)
+
 > **Disclaimer:** This repository is a personal engineering lab built to practice and demonstrate **System Engineering (AI/ML)** and platform operations principles (deployment, monitoring, incident handling, and automation) rather than commercial production experience.
 
 An end-to-end operational platform for serving, monitoring, and maintaining an Indonesian stock news sentiment analysis model on Kubernetes.
@@ -67,7 +69,7 @@ ai-ops-lab/
 | **0** | **Discovery:** Environment discovery, hardware specs, tooling audit, and project scaffolding | ✅ Completed | `docs/00-discovery.md` |
 | **1** | **API & Containerization:** FastAPI endpoints (`/predict`, `/health`, `/metrics`), model loading, multi-stage Docker build | ✅ Completed | Docker image, `curl /predict` |
 | **2** | **Kubernetes on kind:** Declarative manifests, resource limits, health probes, ingress routing | ✅ Completed | Running pods, verified ingress |
-| **3** | **Continuous Integration:** GitHub Actions pipeline for linting, testing, and container build | ⏳ Pending | Green CI pipeline |
+| **3** | **Continuous Integration:** GitHub Actions pipeline for linting, testing, and container build | ✅ Completed | Green CI pipeline |
 | **4** | **Observability:** Prometheus metrics scraping, Grafana RED dashboard, alerting rules | ⏳ Pending | Live Grafana dashboard |
 | **5** | **Database & DR:** MySQL StatefulSet, schema indexing, backup/restore scripts, RTO/RPO tracking | ⏳ Pending | Tested backup & restore |
 | **6** | **Game Days:** Simulated production incidents, runbooks, and blameless postmortems | ⏳ Pending | 3+ incident postmortems |
