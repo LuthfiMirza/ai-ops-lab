@@ -99,3 +99,29 @@ restore:
 db-status:
 	@kubectl exec mysql-0 -n ai-ops -- mysql -u aiops_user -paiops_password ai_ops_db -e "SELECT COUNT(*) as total_records FROM sentiment_predictions; SELECT sentiment, COUNT(*) as count FROM sentiment_predictions GROUP BY sentiment;"
 
+chaos-crashloop:
+	bash scripts/chaos/01-trigger-crashloop.sh --trigger
+
+chaos-crashloop-recover:
+	bash scripts/chaos/01-trigger-crashloop.sh --recover
+
+chaos-imagepull:
+	bash scripts/chaos/02-trigger-imagepullbackoff.sh --trigger
+
+chaos-imagepull-recover:
+	bash scripts/chaos/02-trigger-imagepullbackoff.sh --recover
+
+chaos-oom:
+	bash scripts/chaos/03-trigger-oom.sh --trigger
+
+chaos-oom-recover:
+	bash scripts/chaos/03-trigger-oom.sh --recover
+
+chaos-db:
+	bash scripts/chaos/04-trigger-db-outage.sh --trigger
+
+chaos-db-recover:
+	bash scripts/chaos/04-trigger-db-outage.sh --recover
+
+chaos-traffic:
+	bash scripts/chaos/05-trigger-traffic-spike.sh 100 10

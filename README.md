@@ -72,8 +72,48 @@ ai-ops-lab/
 | **3** | **Continuous Integration:** GitHub Actions pipeline for linting, testing, and container build | ✅ Completed | Green CI pipeline |
 | **4** | **Observability:** Prometheus metrics scraping, Grafana RED dashboard, alerting rules | ✅ Completed | Live Grafana dashboard |
 | **5** | **Database & DR:** MySQL StatefulSet, schema indexing, backup/restore scripts, RTO/RPO tracking | ✅ Completed | Tested backup & restore |
-| **6** | **Game Days:** Simulated production incidents, runbooks, and blameless postmortems | ⏳ Pending | 3+ incident postmortems |
+| **6** | **Game Days:** Simulated production incidents, runbooks, and blameless postmortems | ✅ Completed | [docs/06-gameday-report.md](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/06-gameday-report.md), 5 Runbooks, 3 Postmortems |
 | **7** | **Bonus Extensions:** Streaming ingestion, drift detection, or infrastructure automation | ⏳ Backlog | Selected operational bonus |
+
+---
+
+## 💥 Chaos Engineering, Runbooks, & Blameless Postmortems
+
+Phase 6 implements automated chaos failure injections and operational readiness assets:
+
+### 📖 Standard Operating Procedures (Runbooks)
+- [RB-01: CrashLoopBackOff Resolution](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/runbooks/RB-01-crashloopbackoff.md)
+- [RB-02: ImagePullBackOff Triage & Rollback](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/runbooks/RB-02-imagepullbackoff.md)
+- [RB-03: OOMKilled (Exit Code 137) Sizing & Triage](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/runbooks/RB-03-oomkilled.md)
+- [RB-04: Database Outage & Disaster Recovery](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/runbooks/RB-04-database-outage.md)
+- [RB-05: Traffic Spike & Horizontal Scaling](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/runbooks/RB-05-traffic-spike.md)
+
+### 📝 Blameless Postmortems
+- [PM-01: CrashLoopBackOff Due to Invalid Model Path](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/postmortems/PM-01-crashloopbackoff.md)
+- [PM-02: ImagePullBackOff Non-existent Tag Rollout](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/postmortems/PM-02-imagepullbackoff.md)
+- [PM-03: OOMKilled Under Machine Learning Inference Load](file:///Applications/XAMPP/xamppfiles/htdocs/ai-ops-lab/docs/postmortems/PM-03-oomkilled.md)
+
+### 🧪 Executing Chaos Injections
+```bash
+# CrashLoopBackOff simulation & recovery
+make chaos-crashloop
+make chaos-crashloop-recover
+
+# ImagePullBackOff simulation & rollback
+make chaos-imagepull
+make chaos-imagepull-recover
+
+# OOMKilled (Exit Code 137) simulation & resource sizing
+make chaos-oom
+make chaos-oom-recover
+
+# Database Outage & Graceful Fallback verification
+make chaos-db
+make chaos-db-recover
+
+# High Traffic Spike stress test
+make chaos-traffic
+```
 
 ---
 

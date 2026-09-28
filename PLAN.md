@@ -62,7 +62,7 @@ ai-ops-lab/
 | 3 | CI GitHub Actions | Selesai | pipeline hijau |
 | 4 | Monitoring Prometheus + Grafana + alert | Selesai | dashboard hidup |
 | 5 | MySQL + persistensi + backup/restore | Selesai | data tetap ada setelah pod dihapus |
-| 6 | Game day + runbook + postmortem | Belum | 3 dokumen insiden |
+| 6 | Game day + runbook + postmortem | Selesai | `docs/06-gameday-report.md`, 5 runbooks, 3 postmortems |
 | 7 (bonus) | Kafka, GraphQL, Ansible, drift metric | Belum | pilih sesuai waktu |
 
 ## Jadwal saran (estimasi, sesuaikan dengan kuliah, GUCC, dan skripsi)
