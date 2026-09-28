@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sentiment-api-config
+  namespace: ai-ops
+data:
+  MODEL_TYPE: "baseline-sklearn"
+  PORT: "8000"
+  LOG_LEVEL: "info"
