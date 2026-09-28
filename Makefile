@@ -63,3 +63,24 @@ k8s-deploy:
 k8s-status:
 	kubectl get all,ingress -n ai-ops
 
+monitoring-deploy:
+	kubectl apply -f monitoring/namespace.yaml
+	kubectl apply -f monitoring/prometheus-rbac.yaml
+	kubectl apply -f monitoring/prometheus-configmap.yaml
+	kubectl apply -f monitoring/prometheus-deployment.yaml
+	kubectl apply -f monitoring/prometheus-service.yaml
+	kubectl apply -f monitoring/grafana-configmap.yaml
+	kubectl apply -f monitoring/grafana-dashboards-configmap.yaml
+	kubectl apply -f monitoring/grafana-deployment.yaml
+	kubectl apply -f monitoring/grafana-service.yaml
+
+monitoring-status:
+	kubectl get all -n monitoring
+
+monitoring-port-forward:
+	@echo "Forwarding Grafana to http://localhost:3000 (Ctrl+C to stop)..."
+	kubectl port-forward -n monitoring svc/grafana-service 3000:3000
+
+traffic:
+	bash scripts/generate-traffic.sh 30
+
